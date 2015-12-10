@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<web-fragment>
+    <servlet>
+        <servlet-name>jQuery.PRIMO.RestAPI</servlet-name>
+        <servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
+        <init-param>
+            <param-name>com.sun.jersey.config.property.packages</param-name>
+            <param-value>jQuery.PRIMO</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>jQuery.PRIMO.RestAPI</servlet-name>
+        <url-pattern>/jqp/*</url-pattern>
+    </servlet-mapping>
+</web-fragment>
