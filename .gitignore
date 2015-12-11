@@ -1,4 +1,4 @@
-./lib/*.jar
-./lib/primo/*.jar
-build/output/*.*
+lib/*.jar
+lib/primo/*.jar
+build/output/*
 .idea

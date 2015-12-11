@@ -1,0 +1,35 @@
+{
+  "view": {
+    "institution": {
+      "code": "INSTITUTION_CODE",
+      "name": "My Institution"
+    },
+    "code": "MYVIEW",
+    "interfaceLanguage": "en_US",
+    "frontEndID": "test"
+  },
+  "ip": {
+    "institution": {
+      "code": "INSTITUTION_CODE",
+      "name": "My Institution"
+    },
+    "address": "111.111.111.111"
+  },
+  "sessionId": "123456",
+  "user": {
+    "name": "anonymous",
+    "isLoggedIn": false,
+    "ranking": {
+      "categories": null,
+      "prefer_new": null
+    },
+    "id": "anonymous-123456",
+    "email": null,
+    "isOnCampus": true
+  },
+  "pds": {
+    "institution": "INSTITUTION_CODE",
+    "baseUrl": "https:\/\/pds.example.com\/pds",
+    "url": "https:\/\/pds.example.com\/pds?func=bor-info&calling_system=primo&institute=INSTITUTION_CODE"
+  }
+}

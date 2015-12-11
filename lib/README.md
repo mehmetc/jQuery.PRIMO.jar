@@ -10,11 +10,16 @@ They are located in $(fe_web)/WEB-INF/lib
 - xom
 - json-simple
 - ezmorph
-- mockito (for testing)
+- easymock (for testing)
+- powermock (for testing)
 
 ***Primo***
+JARS
 - auth-module
 - jaguar-client
 - primo-common-infra
 - primo-library-common
 - primo-library-server
+
+CLASSES
+- SessionUtils

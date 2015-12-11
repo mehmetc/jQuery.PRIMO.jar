@@ -1,21 +1,8 @@
 package jQuery.PRIMO;
 
-import com.exlibris.jaguar.xsd.search.DOCDocument;
-import com.exlibris.primo.context.ContextAccess;
-import com.exlibris.primo.domain.entities.HRemoteSourceRecord;
-import com.exlibris.primo.domain.entities.HSourceRecord;
-import com.exlibris.primo.domain.entities.OriginalSourceRecord;
-import com.exlibris.primo.jsonld.PnxRestApiHandler;
-import com.exlibris.primo.jsonld.RestBriefsearchInputParams;
-import com.exlibris.primo.utils.CommonUtil;
-import com.exlibris.primo.utils.SessionUtils;
-import com.exlibris.primo.xsd.commonData.PrimoResult;
-import org.apache.xmlbeans.XmlOptions;
 import org.json.simple.JSONArray;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * This file is part of jQuery.PRIMO
@@ -66,30 +53,19 @@ public class Record {
     /**
      * Gets original record. Mostly MARCXML
      *
-     * @param id the id as defined in the result set
+     * @param recordID the id as defined in the result set
      * @return the original record
      */
-    public static String getOriginalRecord(String id) {
+    public static String getOriginalRecord(String recordID) {
         try {
-            List resultList = new ArrayList();
+            String record = Helpers.getOriginalRecord(recordID);
 
-            if (CommonUtil.isNotLocalRecord(id)) {
-                resultList = ContextAccess.getInstance().getPersistenceManager().find("from HRemoteSourceRecord record where record.recordId = ?", new Object[]{id});
-
-                if (resultList.size() > 0) {
-                    return ((HRemoteSourceRecord) resultList.get(0)).getXmlContent();
-                }
-            } else {
-                resultList = ContextAccess.getInstance().getPersistenceManager().find("from OriginalSourceRecord record where record.recordID = ?", new Object[]{id});
-
-                if (resultList.size() > 0) {
-                    return ((OriginalSourceRecord) resultList.get(0)).getSourceRecord();
-                }
+            if (record == null ) {
+                throw new RuntimeException("original record not found");
             }
 
-            throw new RuntimeException("original record not found");
+            return record;
         } catch(Exception e) {
-            //logger.info(e.getMessage());
             throw e;
         }
     }
@@ -107,23 +83,7 @@ public class Record {
         try {
 
             if ((dedupID != null) && (dedupID.length() > 0)) {
-
-                List<String> dedupList = new ArrayList();
-
-                List resultList = new ArrayList();
-                long recordID = Long.parseLong(dedupID.replaceAll("dedupmrg", ""));
-
-                resultList = ContextAccess.getInstance().getPersistenceManager().find("from HSourceRecord record where record.matchId = ?", new Object[]{recordID});
-
-                if (resultList.size() > 0) {
-                    for (Object record: resultList){
-                        if (!dedupList.contains(((HSourceRecord)record).getSourceId())) {
-                            dedupList.add(((HSourceRecord)record).getSourceId());
-                        }
-                    }
-                }
-
-                obj.addAll(dedupList);
+                obj.addAll(Helpers.resolveDedupRecord(dedupID,request));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -132,68 +92,8 @@ public class Record {
         return obj.toJSONString();
     }
 
-    /**
-     * Lookup a record and return the PNX record as a PrimoResult
-     *
-     * @param recordID record id to lookup
-     * @param request the request
-     * @return a record as a PrimoResult
-     */
-    public static PrimoResult searchReturnPrimoResult(String recordID, HttpServletRequest request) {
-        PrimoResult result = null;
-
-        try {
-            PnxRestApiHandler pnxRestApiHandler = (PnxRestApiHandler)ContextAccess.getInstance().getBean("pnxRestApiHandler");
-
-            RestBriefsearchInputParams inputParameters = new RestBriefsearchInputParams();
-            inputParameters.institution = SessionUtils.getInstitutionCode(request);
-            inputParameters.scope = (String)request.getSession().getAttribute("defaultLocalScope");
-            inputParameters.serviceType = RestBriefsearchInputParams.SERVICE_TYPE.RDF;
-            inputParameters.vid = SessionUtils.getSessionViewId(request);
-            inputParameters.rtaLinks = false;
-            inputParameters.limit = 1;
-            inputParameters.offset = 0;
-            inputParameters.view = "brief";
-            inputParameters.ip = request.getRemoteAddr();
-            inputParameters.setLanguages("eng");
-
-            if (recordID.startsWith("TN_")) {
-                inputParameters.setContext("PC");
-                //inputParameters.setQueryFields("rid,exact,"+recordID.replaceAll("^TN_", ""));
-                inputParameters.setQueryFields(recordID);
-            } else {
-                //inputParameters.setQueryFields("rid,exact,"+recordID);
-                inputParameters.setQueryFields(recordID);
-            }
-
-            result = pnxRestApiHandler.doSearch(inputParameters);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return result;
+    public static String search(String recordID, HttpServletRequest request) {
+        return Helpers.searchReturnString(recordID, request);
     }
-
-    /**
-     * Lookup a record and return the PNX record as text
-     *
-     * @param recordID record id to lookup
-     * @param request the request
-     * @return a record
-     */
-    public static String searchReturnString(String recordID, HttpServletRequest request) {
-        String result = "";
-        try {
-            PrimoResult primoResult = searchReturnPrimoResult(recordID, request);
-            DOCDocument.DOC[] docArray = primoResult.getSEGMENTS().getJAGROOTArray(0).getRESULT().getDOCSET().getDOCArray().clone();
-            if (docArray.length > 0) {
-                result = docArray[0].getPrimoNMBib().getRecordArray(0).xmlText(new XmlOptions().setSaveOuter());
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return result;
-    }
-
 
 }

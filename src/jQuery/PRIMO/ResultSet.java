@@ -1,11 +1,7 @@
 package jQuery.PRIMO;
 
-import com.exlibris.jaguar.xsd.search.DOCDocument;
-import com.exlibris.primo.utils.SessionUtils;
-import com.exlibris.primo.xsd.commonData.PrimoResult;
 import com.google.common.base.Joiner;
 import net.sf.json.xml.XMLSerializer;
-import org.apache.xmlbeans.XmlOptions;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;
@@ -19,7 +15,7 @@ import java.util.*;
  * Created by mehmetc on 20/11/15.
  */
 public class ResultSet {
-    private HashMap<String, String> resultSet = new HashMap<String, String>();
+    private HashMap<String, String> resultSet = new HashMap<>();
 
     /**
      * Instantiates a new Result set.
@@ -28,19 +24,9 @@ public class ResultSet {
      */
     public ResultSet(HttpServletRequest request) {
         try {
-            parseResultSet(SessionUtils.getSearchResult(request));
+           resultSet = Helpers.parsePrimoResult(Helpers.getSessionSearchResult(request));
         } catch (Exception e) {
             System.out.println(e.getMessage());
-        }
-    }
-
-    private void parseResultSet(PrimoResult primoResult) {
-        DOCDocument.DOC[] docArray = primoResult.getSEGMENTS().getJAGROOTArray(0).getRESULT().getDOCSET().getDOCArray().clone();
-        for (DOCDocument.DOC doc : docArray) {
-            String id = doc.getPrimoNMBib().getRecordArray(0).getControl().getRecordidArray(0);
-            String tmpRecord = doc.getPrimoNMBib().getRecordArray(0).xmlText(new XmlOptions().setSaveOuter()).replaceAll("<record .*>", "<record>"); //default
-
-            resultSet.put(id, tmpRecord);
         }
     }
 
@@ -49,12 +35,8 @@ public class ResultSet {
      *
      * @param resultSet the result set
      */
-    public ResultSet(PrimoResult resultSet) {
-        try{
-            parseResultSet(resultSet);
-        } catch (Exception e){
-            System.out.println(e.getMessage());
-        }
+    public ResultSet(HashMap<String, String> resultSet) {
+        this.resultSet = resultSet;
     }
 
     /**
@@ -67,14 +49,6 @@ public class ResultSet {
         return id.equals("*") || resultSet.containsKey(id);
     }
 
-    /**
-     * Gets rs.
-     *
-     * @return the rs
-     */
-    public HashMap<String, String> getRS() {
-        return resultSet;
-    }
 
     /**
      * Gets as pnx.
@@ -137,7 +111,7 @@ public class ResultSet {
      * @return record string
      */
     public String get(String id, String type){
-        String result = "";
+        String result;
         if (this.includes(id)) {
 
             if (id.equals("*")){

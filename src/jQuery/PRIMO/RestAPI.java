@@ -91,7 +91,7 @@ public class RestAPI {
             ResultSet resultSet = new ResultSet(request);
 
             if (!resultSet.includes(recordID)) {
-                resultSet = new ResultSet(Record.searchReturnPrimoResult(recordID, request));
+                resultSet = new ResultSet(Helpers.parsePrimoResult(Helpers.searchReturnPrimoResult(recordID, request)));
             }
 
             if (resultSet != null) {

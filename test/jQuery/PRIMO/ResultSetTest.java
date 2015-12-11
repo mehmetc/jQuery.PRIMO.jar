@@ -21,7 +21,7 @@ public class ResultSetTest {
         System.setProperty("log4j.defaultInitOverride","true");
 
         File file = new File("/Users/mehmetc/Sources/Libis/Primo/jQuery.PRIMO.jar/test/resources/resultset.xml");
-        this.resultSet = new ResultSet(PrimoResult.Factory.parse(file));
+        this.resultSet = new ResultSet(Helpers.parsePrimoResult(PrimoResult.Factory.parse(file)));
     }
 
     @Test
