@@ -1,6 +1,6 @@
 #jQuery.PRIMO (companion library)
 
-- This is the server part of jQuery.PRIMO. 
+- This is the server part of [jQuery.PRIMO](https://github.com/mehmetc/jQuery.PRIMO). Go there for more info
 - Put this library in: /exlibris/primo/p4_1/ng/primo/home/system/tomcat/search/webapps/primo_library#libweb/WEB_INF/lib
 - It will create a Rest endpoint to session and record data. 
     - base endpoint: http://yourlimo.installation/primo_library/libweb/jqp
@@ -9,6 +9,7 @@
  $ cd WEB_INF/lib
 ```
 
+# Available calls
 ##Get library version
 ```http
     /version
@@ -97,6 +98,7 @@
 ```
 
 ## Get record data for an id from your result set
+It will perform a search if it can not find your data on the result set
 ### Get as PNX
 ```http
     /record/32LIBIS_ALMA_DS71124679060001471.pnx
@@ -109,7 +111,9 @@
 ```http    
     /record/32LIBIS_ALMA_DS71124679060001471.json
 ```
-### Get all records as JSON
+### Get all records as JSON. 
+This will return what is set in the result set of a pre-run search query. The result set is volatile this means
+that when you click on ex. details the result set will only contain that single record.
 ```http    
     /record/*.json
 ```
