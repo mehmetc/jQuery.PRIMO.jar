@@ -9,6 +9,10 @@
  $ cd WEB_INF/lib
 ```
 
+#Compiling
+If you want to recompile you will notice that jQuery.PRIMO.Helpers.java is missing. Ping me and I will send it to you. 
+
+
 # Available calls
 ##Get library version
 ```http

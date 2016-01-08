@@ -1,6 +1,7 @@
 package jQuery.PRIMO;
 
 import com.exlibris.primo.logger.PrimoLogger;
+import org.json.simple.JSONObject;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.*;
@@ -35,12 +36,16 @@ public class RestAPI {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/session")
     public Response getSession() {
-        try {
-            Session session = new Session(request);
-            return Response.status(200).entity(session.getAsJSON()).build();
-        } catch (Exception e) {
-            logger.info(e.getMessage());
-            return Response.serverError().build();
+        if (Helpers.hasSession(request)) {
+            try {
+                Session session = new Session(request);
+                return Response.status(200).entity(session.getAsJSON()).build();
+            } catch (Exception e) {
+                logger.info(e.getMessage());
+                return Response.serverError().build();
+            }
+        } else {
+            return Response.status(520).entity("create a session first").build();
         }
     }
 
@@ -48,24 +53,28 @@ public class RestAPI {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/record/resolve/{data}")
     public Response resolveDedup(@PathParam("data") String data, @QueryParam("id") String id){
-        String result = "";
-        try{
-            data = id != null && id.length() > 0 ? id : data;
-            String recordID = Record.getRecordID(data);
-            ResultSet resultSet = new ResultSet(request);
+        if (Helpers.hasSession(request)) {
+            String result = "";
+            try {
+                data = id != null && id.length() > 0 ? id : data;
+                String recordID = Record.getRecordID(data);
+                ResultSet resultSet = new ResultSet(request);
 
-            if (resultSet.includes(recordID)) {
-                result = Record.resolveDedupRecord(recordID, request);
-            } else {
-                return Response.status(404).entity("record not in result set").build();
+                if (resultSet.includes(recordID)) {
+                    result = Record.resolveDedupRecord(recordID, request);
+                } else {
+                    return Response.status(404).entity("record not in result set").build();
+                }
+
+            } catch (Exception e) {
+                logger.info(e.getMessage());
+                return Response.serverError().build();
             }
 
-        } catch (Exception e) {
-            logger.info(e.getMessage());
-            return Response.serverError().build();
+            return Response.status(200).entity(result).build();
+        }else {
+            return Response.status(520).entity("create a session first").build();
         }
-
-        return Response.status(200).entity(result).build();
     }
 
 
@@ -81,44 +90,49 @@ public class RestAPI {
     @Produces(MediaType.TEXT_XML)
     @Path("/record/{data:.*}")
     public Response getRecord(@PathParam("data") String data, @QueryParam("id") String id) {
-        String result = "";
+        if (Helpers.hasSession(request)) {
 
-        data = id != null && id.length() > 0 ? id : data;
-        String recordID = Record.getRecordID(data);
-        String recordExt = Record.determineRecordExt(data);
+            String result = "";
 
-        try {
-            ResultSet resultSet = new ResultSet(request);
+            data = id != null && id.length() > 0 ? id : data;
+            String recordID = Record.getRecordID(data);
+            String recordExt = Record.determineRecordExt(data);
 
-            if (!resultSet.includes(recordID)) {
-                resultSet = new ResultSet(Helpers.parsePrimoResult(Helpers.searchReturnPrimoResult(recordID, request)));
+            try {
+                ResultSet resultSet = new ResultSet(request);
+
+                if (!resultSet.includes(recordID)) {
+                    resultSet = new ResultSet(Helpers.parsePrimoResult(Helpers.searchReturnPrimoResult(recordID, request)));
+                }
+
+                if (resultSet != null) {
+                    result = resultSet.get(recordID, recordExt);
+                }
+
+                if (result == null || result.length() == 0) {
+                    return Response.status(404).entity("record not in result set").build();
+                }
+
+                String mediaType = "";
+
+                switch (recordExt) {
+                    case "JSON":
+                        mediaType = MediaType.APPLICATION_JSON;
+                        break;
+                    default:
+                        mediaType = MediaType.TEXT_XML;
+                        if (!result.startsWith("<?xml")) {
+                            result = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" + result;
+                        }
+                }
+
+                return Response.status(200).type(mediaType).entity(result).build();
+            } catch (Exception e) {
+                logger.info(e.getMessage());
+                return Response.serverError().build();
             }
-
-            if (resultSet != null) {
-                result = resultSet.get(recordID, recordExt);
-            }
-
-            if (result == null || result.length() == 0) {
-                return Response.status(404).entity("record not in result set").build();
-            }
-
-            String mediaType = "";
-
-            switch (recordExt){
-                case "JSON":
-                    mediaType = MediaType.APPLICATION_JSON;
-                    break;
-                default:
-                    mediaType = MediaType.TEXT_XML;
-                    if (!result.startsWith("<?xml")) {
-                        result = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" + result;
-                    }
-            }
-
-            return Response.status(200).type(mediaType).entity(result).build();
-        } catch (Exception e) {
-            logger.info(e.getMessage());
-            return Response.serverError().build();
+        } else {
+            return Response.status(520).entity("create a session first").build();
         }
     }
 
@@ -132,6 +146,9 @@ public class RestAPI {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/version")
     public Response getVersion(){
-        return Response.status(200).entity("1.0.0").build();
+        JSONObject versionData = new JSONObject();
+        versionData.put("version", Version.VERSION_NUMBER);
+        versionData.put("build", Version.BUILD_TIME);
+        return Response.status(200).entity(versionData.toJSONString()).build();
     }
 }
