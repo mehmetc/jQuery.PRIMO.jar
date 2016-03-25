@@ -54,7 +54,7 @@ public class RestAPI {
     @Path("/record/resolve/{data}")
     public Response resolveDedup(@PathParam("data") String data, @QueryParam("id") String id){
         if (Helpers.hasSession(request)) {
-            String result = "";
+            String result;
             try {
                 data = id != null && id.length() > 0 ? id : data;
                 String recordID = Record.getRecordID(data);
@@ -92,7 +92,7 @@ public class RestAPI {
     public Response getRecord(@PathParam("data") String data, @QueryParam("id") String id) {
         if (Helpers.hasSession(request)) {
 
-            String result = "";
+            String result;
 
             data = id != null && id.length() > 0 ? id : data;
             String recordID = Record.getRecordID(data);
@@ -105,15 +105,13 @@ public class RestAPI {
                     resultSet = new ResultSet(Helpers.parsePrimoResult(Helpers.searchReturnPrimoResult(recordID, request)));
                 }
 
-                if (resultSet != null) {
-                    result = resultSet.get(recordID, recordExt);
-                }
+                result = resultSet.get(recordID, recordExt);
 
                 if (result == null || result.length() == 0) {
                     return Response.status(404).entity("record not in result set").build();
                 }
 
-                String mediaType = "";
+                String mediaType;
 
                 switch (recordExt) {
                     case "JSON":
@@ -137,6 +135,26 @@ public class RestAPI {
     }
 
 
+
+    //$.get('/primo_library/libweb/jqp/facets', function(d){console.log(d)}, 'json')
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/facets")
+    public Response getFacet(@PathParam("data") String data) {
+        if (Helpers.hasSession(request)) {
+            try {
+                Facet facet = new Facet(request);
+
+                return Response.status(200).entity(facet.getAsJSON()).build();
+            } catch (Exception e) {
+                logger.info(e.getMessage());
+                return Response.serverError().build();
+            }
+        } else {
+            return Response.status(520).entity("create a session first").build();
+        }
+    }
+
     /**
      * Get version.
      *
@@ -148,7 +166,8 @@ public class RestAPI {
     public Response getVersion(){
         JSONObject versionData = new JSONObject();
         versionData.put("version", Version.VERSION_NUMBER);
-        versionData.put("build", Version.BUILD_TIME);
+        //versionData.put("build", Version.BUILD_TIME);
+        versionData.put("description", "jQuery.PRIMO web services");
         return Response.status(200).entity(versionData.toJSONString()).build();
     }
 }

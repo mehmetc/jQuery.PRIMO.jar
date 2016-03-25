@@ -121,3 +121,10 @@ that when you click on ex. details the result set will only contain that single 
 ```http    
     /record/*.json
 ```
+
+## Get facet data from result set
+It will get the facets from the last result set. 
+### Get as JSON
+```http
+    /facets
+```

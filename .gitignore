@@ -2,3 +2,4 @@ lib/*.jar
 lib/primo/*.jar
 build/output/*
 .idea
+.DS_Store
