@@ -7,6 +7,7 @@ import org.junit.Test;
 import java.io.File;
 
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -67,5 +68,13 @@ public class ResultSetTest {
         assertTrue(data.startsWith("["));
         assertTrue(data.endsWith("]"));
 
+    }
+
+    @Test
+    public void testAllAsPNX() throws Exception {
+        String data = resultSet.get("*", "PNX");
+        System.out.println(data);
+        assertNotNull(data);
+        assertTrue(true);
     }
 }
