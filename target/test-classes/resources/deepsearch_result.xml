@@ -1,0 +1,238 @@
+<sear:SEGMENTS xmlns:sear="http://www.exlibrisgroup.com/xsd/jaguar/search">
+    <sear:JAGROOT>
+        <sear:RESULT>
+            <sear:FACETLIST>
+                <sear:FACET NAME="genre" COUNT="5">
+                    <sear:FACET_VALUES KEY="comment" VALUE="806"/>
+                    <sear:FACET_VALUES KEY="news" VALUE="507"/>
+                    <sear:FACET_VALUES KEY="legislation" VALUE="9004"/>
+                    <sear:FACET_VALUES KEY="autolijst" VALUE="47778"/>
+                    <sear:FACET_VALUES KEY="tools" VALUE="1"/>
+                </sear:FACET>
+            </sear:FACETLIST>
+            <sear:DOCSET TOTALHITS="58096" TOTAL_TIME="1169" FIRSTHIT="5" LASTHIT="10" HITS="5" IS_LOCAL="false">
+                <sear:DOC NO="1" ID="0" SEARCH_ENGINE="Kluwer" RANK="0.025817">
+                    <prim:PrimoNMBib xmlns:prim="http://www.exlibrisgroup.com/xsd/primo/primo_nm_bib">
+                        <prim:record>
+                            <prim:control>
+                                <prim:sourceid>Kluwer</prim:sourceid>
+                                <prim:recordid>KluwerVS201430239</prim:recordid>
+                                <prim:sourcerecordid>VS201430239</prim:sourcerecordid>
+                                <prim:sourcesystem>Kluwer</prim:sourcesystem>
+                                <prim:ilsapiid>KluwerVS201430239</prim:ilsapiid>
+                                <prim:sourceformat>JSON</prim:sourceformat>
+                            </prim:control>
+                            <prim:display>
+                                <prim:type>text_resource</prim:type>
+                                <prim:title>BIV in Vlaanderen vanaf 1 maart 2012</prim:title>
+                                <prim:publisher>Kluwer</prim:publisher>
+                                <prim:creationdate>0001-01-01</prim:creationdate>
+                                <prim:snippet>
+                                    <![CDATA[<b>Personenauto</b>, <b>auto</b> voor dubbel gebruik of minibus aangedreven door waterstof, zuiver... 100% elektrische motor of waterstof Voorwaarde is dat de <b>personenauto</b> of <b>auto</b> voor dubbel gebruik of minibus wordt aangedreven door een...]]></prim:snippet>
+                                <prim:source>Assuropolis</prim:source>
+                            </prim:display>
+                            <prim:links>
+                                <prim:linktorsrc>
+                                    $$Uhttp://www.Assuropolis.be/secure/documentview.aspx?id=VS201430239$$DKluwer
+                                </prim:linktorsrc>
+                            </prim:links>
+                            <prim:facets>
+                                <prim:rsrctype>text_resources</prim:rsrctype>
+                                <prim:prefilter>text_resources</prim:prefilter>
+                                <prim:creationdate>0001-01-01</prim:creationdate>
+                                <prim:genre>comment</prim:genre>
+                                <prim:collection>Assuropolis</prim:collection>
+                                <prim:toplevel>online_resources</prim:toplevel>
+                                <prim:language>dut</prim:language>
+                                <prim:atoz>B</prim:atoz>
+                            </prim:facets>
+                            <prim:delivery>
+                                <prim:delcategory>Online Resource</prim:delcategory>
+                                <prim:institution>KBC</prim:institution>
+                                <prim:resdelscope>RESKBC</prim:resdelscope>
+                            </prim:delivery>
+                        </prim:record>
+                    </prim:PrimoNMBib>
+                </sear:DOC>
+                <sear:DOC NO="2" ID="1" SEARCH_ENGINE="Kluwer" RANK="0.025626">
+                    <prim:PrimoNMBib xmlns:prim="http://www.exlibrisgroup.com/xsd/primo/primo_nm_bib">
+                        <prim:record>
+                            <prim:control>
+                                <prim:sourceid>Kluwer</prim:sourceid>
+                                <prim:recordid>KluwerVS300262634</prim:recordid>
+                                <prim:sourcerecordid>VS300262634</prim:sourcerecordid>
+                                <prim:sourcesystem>Kluwer</prim:sourcesystem>
+                                <prim:ilsapiid>KluwerVS300262634</prim:ilsapiid>
+                                <prim:sourceformat>JSON</prim:sourceformat>
+                            </prim:control>
+                            <prim:display>
+                                <prim:type>text_resource</prim:type>
+                                <prim:title>Gemeentelijke administratieve sancties</prim:title>
+                                <prim:publisher>Kluwer</prim:publisher>
+                                <prim:creationdate>0001-01-01</prim:creationdate>
+                                <prim:snippet>
+                                    <![CDATA[...houder van de kentekenplaat van het <b>voertuig</b>. Dat kan ook bij overtreding van...Verkeersbord aangebracht, toen het <b>voertuig</b> al geparkeerd stond ■ Een andere persoon dan de titularis van het <b>voertuig</b> beging die overtreding in werkelijkheid...]]></prim:snippet>
+                                <prim:source>Assuropolis</prim:source>
+                            </prim:display>
+                            <prim:links>
+                                <prim:linktorsrc>
+                                    $$Uhttp://www.Assuropolis.be/secure/documentview.aspx?id=VS300262634$$DKluwer
+                                </prim:linktorsrc>
+                            </prim:links>
+                            <prim:facets>
+                                <prim:rsrctype>text_resources</prim:rsrctype>
+                                <prim:prefilter>text_resources</prim:prefilter>
+                                <prim:creationdate>0001-01-01</prim:creationdate>
+                                <prim:genre>comment</prim:genre>
+                                <prim:collection>Assuropolis</prim:collection>
+                                <prim:toplevel>online_resources</prim:toplevel>
+                                <prim:language>dut</prim:language>
+                                <prim:atoz>G</prim:atoz>
+                            </prim:facets>
+                            <prim:delivery>
+                                <prim:delcategory>Online Resource</prim:delcategory>
+                                <prim:institution>KBC</prim:institution>
+                                <prim:resdelscope>RESKBC</prim:resdelscope>
+                            </prim:delivery>
+                        </prim:record>
+                    </prim:PrimoNMBib>
+                </sear:DOC>
+                <sear:DOC NO="3" ID="2" SEARCH_ENGINE="Kluwer" RANK="0.025586">
+                    <prim:PrimoNMBib xmlns:prim="http://www.exlibrisgroup.com/xsd/primo/primo_nm_bib">
+                        <prim:record>
+                            <prim:control>
+                                <prim:sourceid>Kluwer</prim:sourceid>
+                                <prim:recordid>KluwerVS300190334</prim:recordid>
+                                <prim:sourcerecordid>VS300190334</prim:sourcerecordid>
+                                <prim:sourcesystem>Kluwer</prim:sourcesystem>
+                                <prim:ilsapiid>KluwerVS300190334</prim:ilsapiid>
+                                <prim:sourceformat>JSON</prim:sourceformat>
+                            </prim:control>
+                            <prim:display>
+                                <prim:type>text_resource</prim:type>
+                                <prim:title>BIV in Wallonië vanaf 1 januari 2014, gewijzigd voor oldtimers vanaf 1
+                                    januari 2016
+                                </prim:title>
+                                <prim:publisher>Kluwer</prim:publisher>
+                                <prim:creationdate>0001-01-01</prim:creationdate>
+                                <prim:snippet>
+                                    <![CDATA[...voertuigen die vroeger onder de Dienst <b>auto</b>’<b>s</b> vielen, worden de bestanden bijgewerkt...Het bedrag is verschuldigd zodra het <b>voertuig</b> is ingeschreven in Wallonië aan de SPW-DGO...van de tv kan u daar terecht. Een <b>voertuig</b> kan aangegeven worden voor de verkeersbelastingen...]]></prim:snippet>
+                                <prim:source>Assuropolis</prim:source>
+                            </prim:display>
+                            <prim:links>
+                                <prim:linktorsrc>
+                                    $$Uhttp://www.Assuropolis.be/secure/documentview.aspx?id=VS300190334$$DKluwer
+                                </prim:linktorsrc>
+                            </prim:links>
+                            <prim:facets>
+                                <prim:rsrctype>text_resources</prim:rsrctype>
+                                <prim:prefilter>text_resources</prim:prefilter>
+                                <prim:creationdate>0001-01-01</prim:creationdate>
+                                <prim:genre>comment</prim:genre>
+                                <prim:collection>Assuropolis</prim:collection>
+                                <prim:toplevel>online_resources</prim:toplevel>
+                                <prim:language>dut</prim:language>
+                                <prim:atoz>B</prim:atoz>
+                            </prim:facets>
+                            <prim:delivery>
+                                <prim:delcategory>Online Resource</prim:delcategory>
+                                <prim:institution>KBC</prim:institution>
+                                <prim:resdelscope>RESKBC</prim:resdelscope>
+                            </prim:delivery>
+                        </prim:record>
+                    </prim:PrimoNMBib>
+                </sear:DOC>
+                <sear:DOC NO="4" ID="3" SEARCH_ENGINE="Kluwer" RANK="0.025586">
+                    <prim:PrimoNMBib xmlns:prim="http://www.exlibrisgroup.com/xsd/primo/primo_nm_bib">
+                        <prim:record>
+                            <prim:control>
+                                <prim:sourceid>Kluwer</prim:sourceid>
+                                <prim:recordid>KluwerVS300259353</prim:recordid>
+                                <prim:sourcerecordid>VS300259353</prim:sourcerecordid>
+                                <prim:sourcesystem>Kluwer</prim:sourcesystem>
+                                <prim:ilsapiid>KluwerVS300259353</prim:ilsapiid>
+                                <prim:sourceformat>JSON</prim:sourceformat>
+                            </prim:control>
+                            <prim:display>
+                                <prim:type>text_resource</prim:type>
+                                <prim:title>Wetenswaardigheden over autobussen en autocars vanaf 1 september 2014 en
+                                    regionale aanpassingen aan de zesde staatshervorming
+                                </prim:title>
+                                <prim:publisher>Kluwer</prim:publisher>
+                                <prim:creationdate>0001-01-01</prim:creationdate>
+                                <prim:snippet>
+                                    <![CDATA[...het taxivervoer en het verhuren van <b>auto</b>'<b>s</b> met chauffeur (vervoer bedoeld in...vermeld op het keuringsbewijs van het <b>voertuig</b>; ■ de niet-naleving van de voorschriften...vermijden posten van de kostprijs van het <b>voertuig</b>, in het bijzonder de afschrijving of...]]></prim:snippet>
+                                <prim:source>Assuropolis</prim:source>
+                            </prim:display>
+                            <prim:links>
+                                <prim:linktorsrc>
+                                    $$Uhttp://www.Assuropolis.be/secure/documentview.aspx?id=VS300259353$$DKluwer
+                                </prim:linktorsrc>
+                            </prim:links>
+                            <prim:facets>
+                                <prim:rsrctype>text_resources</prim:rsrctype>
+                                <prim:prefilter>text_resources</prim:prefilter>
+                                <prim:creationdate>0001-01-01</prim:creationdate>
+                                <prim:genre>comment</prim:genre>
+                                <prim:collection>Assuropolis</prim:collection>
+                                <prim:toplevel>online_resources</prim:toplevel>
+                                <prim:language>dut</prim:language>
+                                <prim:atoz>W</prim:atoz>
+                            </prim:facets>
+                            <prim:delivery>
+                                <prim:delcategory>Online Resource</prim:delcategory>
+                                <prim:institution>KBC</prim:institution>
+                                <prim:resdelscope>RESKBC</prim:resdelscope>
+                            </prim:delivery>
+                        </prim:record>
+                    </prim:PrimoNMBib>
+                </sear:DOC>
+                <sear:DOC NO="5" ID="4" SEARCH_ENGINE="Kluwer" RANK="0.025546">
+                    <prim:PrimoNMBib xmlns:prim="http://www.exlibrisgroup.com/xsd/primo/primo_nm_bib">
+                        <prim:record>
+                            <prim:control>
+                                <prim:sourceid>Kluwer</prim:sourceid>
+                                <prim:recordid>KluwerVS300307631</prim:recordid>
+                                <prim:sourcerecordid>VS300307631</prim:sourcerecordid>
+                                <prim:sourcesystem>Kluwer</prim:sourcesystem>
+                                <prim:ilsapiid>KluwerVS300307631</prim:ilsapiid>
+                                <prim:sourceformat>JSON</prim:sourceformat>
+                            </prim:control>
+                            <prim:display>
+                                <prim:type>text_resource</prim:type>
+                                <prim:title>Vervoervergunning voor vervoer van goederen over de weg vanaf 1 september
+                                    2014 en regionale aanpassingen aan de zesde staatshervorming
+                                </prim:title>
+                                <prim:publisher>Kluwer</prim:publisher>
+                                <prim:creationdate>0001-01-01</prim:creationdate>
+                                <prim:snippet>
+                                    <![CDATA[...vereist Indien het laadvermogen van het <b>voertuig</b> of de sleep meer dan 500 kg is of als het <b>voertuig</b> of de sleep overladen wordt en daardoor...verricht door onderneming in België met <b>voertuig</b> ingeschreven in EU, EER of Zwitserland...]]></prim:snippet>
+                                <prim:source>Assuropolis</prim:source>
+                            </prim:display>
+                            <prim:links>
+                                <prim:linktorsrc>
+                                    $$Uhttp://www.Assuropolis.be/secure/documentview.aspx?id=VS300307631$$DKluwer
+                                </prim:linktorsrc>
+                            </prim:links>
+                            <prim:facets>
+                                <prim:rsrctype>text_resources</prim:rsrctype>
+                                <prim:prefilter>text_resources</prim:prefilter>
+                                <prim:creationdate>0001-01-01</prim:creationdate>
+                                <prim:genre>comment</prim:genre>
+                                <prim:collection>Assuropolis</prim:collection>
+                                <prim:toplevel>online_resources</prim:toplevel>
+                                <prim:language>dut</prim:language>
+                                <prim:atoz>V</prim:atoz>
+                            </prim:facets>
+                            <prim:delivery>
+                                <prim:delcategory>Online Resource</prim:delcategory>
+                                <prim:institution>KBC</prim:institution>
+                                <prim:resdelscope>RESKBC</prim:resdelscope>
+                            </prim:delivery>
+                        </prim:record>
+                    </prim:PrimoNMBib>
+                </sear:DOC>
+            </sear:DOCSET>
+        </sear:RESULT>
+    </sear:JAGROOT>
+</sear:SEGMENTS>
