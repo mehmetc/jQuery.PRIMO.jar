@@ -369,6 +369,36 @@ public class Helpers {
         return null;
     }
 
+    /**
+     * Gets PNX record from database.
+     *
+     * @param recordID the record id
+     * @return the pnx record
+     */
+    public static String getPNXRecordFromDB(String recordID) {
+        List resultList = new ArrayList();
+
+        try {
+
+            if (CommonUtil.isNotLocalRecord(recordID)) {
+                resultList = ContextAccess.getInstance().getPersistenceManager().find("from HRemoteSourceRecord record where record.recordId = ?", new Object[]{recordID});
+
+                if (resultList.size() > 0) {
+                    return ((HRemoteSourceRecord) resultList.get(0)).getXmlContent();
+                }
+            } else {
+                resultList = ContextAccess.getInstance().getPersistenceManager().find("from HSourceRecord record where record.recordId = ?", new Object[]{recordID});
+
+                if (resultList.size() > 0) {
+                    return ((HSourceRecord) resultList.get(0)).getXmlContent();
+                }
+            }
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 
     /**
      * Resolve dedup record list.

@@ -143,7 +143,8 @@ public class ResultSet {
             }
 
         } else {
-            throw new RuntimeException("record not in result set");
+            return null;
+            //throw new RuntimeException("record not in result set");
         }
 
         return result;

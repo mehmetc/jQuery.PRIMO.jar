@@ -1,8 +1,10 @@
 package jQuery.PRIMO;
 
+import net.sf.json.xml.XMLSerializer;
 import org.json.simple.JSONArray;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.ws.rs.core.MediaType;
 
 /**
  * This file is part of jQuery.PRIMO
@@ -50,6 +52,26 @@ public class Record {
         return data.replace("." + getRecordExt(data), "");
     }
 
+    public static String get(String recordId, String recordExt) {
+        String result = "";
+        try {
+            switch (recordExt) {
+                case "JSON":
+                    result = new XMLSerializer().read(Helpers.getPNXRecordFromDB(recordId)).toString(2);
+                    break;
+                case "XML":
+                    result = getOriginalRecord(recordId);
+                    break;
+                default:
+                    result = Helpers.getPNXRecordFromDB(recordId);
+            }
+        } catch(Exception e) {
+            throw e;
+        }
+
+        return result;
+    }
+
     /**
      * Gets original record. Mostly MARCXML
      *
@@ -68,6 +90,34 @@ public class Record {
         } catch(Exception e) {
             throw e;
         }
+    }
+
+
+    /**
+     * Gets original record
+     *
+     * @param recordID the id as defined in the result set
+     * @param ext return data as format
+     * @return the original record
+     */
+    public static String getOriginalRecord(String recordID, String ext) {
+        String result = "";
+        try {
+            String record = getOriginalRecord(recordID);
+
+            switch (ext) {
+                case "JSON":
+                    result = new XMLSerializer().read(record).toString(2);
+                    break;
+                default:
+                    result = record;
+            }
+
+        } catch(Exception e) {
+            throw e;
+        }
+
+        return result;
     }
 
     /**
